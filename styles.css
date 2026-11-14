@@ -1,0 +1,174 @@
+/* ==========================================================================
+   CLÍNICA DENTAL SONRISA & SALUD — Design System Tokens & Calm UI Styles
+   ========================================================================== */
+
+:root {
+  --color-bg: #FAF9F5;
+  --color-surface: #FFFFFF;
+  --color-sage-soft: #EFF4F0;
+  --color-sand: #F3EFEA;
+  --color-fg: #132A2E;
+  --color-primary: #1D5B61;
+  --color-primary-hover: #15454A;
+  --color-sage: #4A6B5D;
+  --color-muted-fg: #4B5E61;
+  --color-accent: #B4693E;
+  --color-border: #DCE4E0;
+  --color-destructive: #C53030;
+  --color-success: #1F6F50;
+
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Open Sans', system-ui, -apple-system, sans-serif;
+
+  --shadow-calm: 0 10px 32px -8px rgba(19, 42, 46, 0.06);
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 180ms;
+  --duration-medium: 320ms;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Focus Accessible */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 60;
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Calm Card Elevation */
+.card-calm {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-calm);
+  transition: transform var(--duration-medium) var(--ease-calm),
+              border-color var(--duration-fast) var(--ease-calm);
+}
+
+.card-calm:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+}
+
+/* Header Scrolled */
+.site-header {
+  transition: background-color var(--duration-fast) var(--ease-calm),
+              box-shadow var(--duration-fast) var(--ease-calm);
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(250, 249, 245, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(19, 42, 46, 0.05);
+}
+
+/* Smooth Accordion */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-medium) var(--ease-calm);
+}
+
+.accordion-panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-panel-inner {
+  overflow: hidden;
+}
+
+.accordion-chevron {
+  transition: transform var(--duration-fast) var(--ease-calm);
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+/* Modal */
+.modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast) var(--ease-calm);
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-panel {
+  transform: translateY(14px) scale(0.99);
+  transition: transform var(--duration-medium) var(--ease-calm);
+}
+
+.modal-overlay.is-open .modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+/* Form Inputs */
+.input-calm {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  transition: border-color var(--duration-fast) var(--ease-calm),
+              box-shadow var(--duration-fast) var(--ease-calm);
+}
+
+.input-calm:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(29, 91, 97, 0.12);
+  outline: none;
+}
+
+.input-calm[aria-invalid="true"] {
+  border-color: var(--color-destructive);
+  box-shadow: 0 0 0 3px rgba(197, 48, 48, 0.12);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
